@@ -10,7 +10,57 @@
     width: 450px;            /* Ширина фото */
     height: auto;            /* Высота сама подстроится */
     border-radius: 15px;     /* Закругленные углы */
-}
+} /* Стиль для пустой статьи при загрузке */
+    .article-container {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    
+    /* Анимация появления контейнера */
+    .article-container.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 1s ease-out;
+    }
+    
+    /* Скрываем все элементы статьи изначально */
+    .article-container > * {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    
+    /* Анимации для разных элементов */
+    .article-header {
+        transition: all 0.9s ease-out 0.4s;
+    }
+    
+    .article-image,
+    .article-image-side {
+        transition: all 0.9s ease-out 0.7s;
+    }
+    
+    .article-content p {
+        transition: all 0.8s ease-out;
+    }
+    
+    .article-content ul {
+        transition: all 0.8s ease-out;
+    }
+    
+    /* Задержки для параграфов */
+    .article-content p:nth-child(1) { transition-delay: 1s; }
+    .article-content p:nth-child(2) { transition-delay: 1.3s; }
+    .article-content p:nth-child(3) { transition-delay: 1.6s; }
+    .article-content p:nth-child(4) { transition-delay: 1.9s; }
+    
+    /* Задержка для списка */
+    .article-content ul { transition-delay: 2.2s; }
+    
+    /* Когда контейнер видим - показываем элементы */
+    .article-container.visible > * {
+        opacity: 1;
+        transform: translateY(0);
+    }
         /* ФОН СТРАНИЦЫ */
         body {
             background-image: url('images/кпз.jpg');
@@ -204,5 +254,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 </html>
+
 
 
