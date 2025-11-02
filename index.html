@@ -3,6 +3,85 @@
 <head>
     <!-- В <head> добавляем стили -->
 <style>
+    /* Анимация появления карточек */
+    .news-card {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s ease-out;
+        /* Сохраняем оригинальные стили для hover */
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    /* Задержки для каждой карточки */
+    .news-card:nth-child(1) { transition-delay: 0.3s; }
+    .news-card:nth-child(2) { transition-delay: 0.5s; }
+    .news-card:nth-child(3) { transition-delay: 0.7s; }
+    .news-card:nth-child(4) { transition-delay: 0.9s; }
+    
+    .page-loaded .news-card {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Анимация при наведении - работает после загрузки */
+    .page-loaded .news-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+    
+    /* Анимация заголовка */
+    .page-header {
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: all 0.8s ease-out 0.2s;
+    }
+    
+    .page-loaded .page-header {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Анимация изображений в карточках */
+    .card-image {
+        transition: transform 0.3s ease;
+    }
+    
+    .page-loaded .news-card:hover .card-image {
+        transform: scale(1.05);
+    }
+</style>
+
+<script>
+// Постепенное появление карточек при загрузке
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        document.body.classList.add('page-loaded');
+    }, 300);
+});
+
+// Функция для плавного перехода на страницу статьи
+function openArticleWithAnimation(articleUrl) {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.4s ease';
+    
+    setTimeout(() => {
+        window.location.href = articleUrl;
+    }, 400);
+}
+
+// Обработчики для кнопок
+document.querySelectorAll('.read-more').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        openArticleWithAnimation(this.href);
+    });
+});
+</script>
+     <style>
     /* Изначально скрываем карточки и заголовок */
     .news-grid,
     .page-header {
@@ -185,6 +264,7 @@ document.querySelectorAll('.read-more').forEach(button => {
 <div class="page-turn" id="pageTurn"></div>
 
 </html>
+
 
 
 
