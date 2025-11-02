@@ -173,7 +173,31 @@
         </div>
     </div>
 </body>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Добавляем классы для анимации
+    const article = document.querySelector('.article-container');
+    if (article) {
+        article.classList.add('fade-in');
+        
+        setTimeout(() => {
+            article.classList.add('visible');
+        }, 200);
+    }
+    
+    // Поочередное появление внутренних элементов
+    const innerElements = article.querySelectorAll('h1, h2, p, ul, img');
+    innerElements.forEach((element, index) => {
+        element.classList.add('fade-in');
+        
+        setTimeout(() => {
+            element.classList.add('visible');
+        }, 500 + (index * 150));
+    });
+});
+</script>
 
 </html>
+
 
 
