@@ -4,8 +4,59 @@
     <meta charset="UTF-8">
     <title>Федор Минаков - Kover</title>
     <style>
+    /* Стиль для пустой статьи при загрузке */
+    .article-container {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    
+    /* Анимация появления контейнера */
+    .article-container.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 1s ease-out;
+    }
+    
+    /* Скрываем все элементы статьи изначально */
+    .article-container > * {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    
+    /* Анимации для разных элементов */
+    .article-header {
+        transition: all 0.8s ease-out 0.3s;
+    }
+    
+    .article-image,
+    .article-image-side {
+        transition: all 0.8s ease-out 0.6s;
+    }
+    
+    .article-content p {
+        transition: all 0.7s ease-out;
+    }
+    
+    .article-content ul {
+        transition: all 0.7s ease-out;
+    }
+    
+    /* Задержки для параграфов */
+    .article-content p:nth-child(1) { transition-delay: 0.9s; }
+    .article-content p:nth-child(2) { transition-delay: 1.2s; }
+    .article-content p:nth-child(3) { transition-delay: 1.5s; }
+    .article-content p:nth-child(4) { transition-delay: 1.8s; }
+    
+    /* Задержка для списка */
+    .article-content ul { transition-delay: 2.1s; }
+    
+    /* Когда контейнер видим - показываем элементы */
+    .article-container.visible > * {
+        opacity: 1;
+        transform: translateY(0);
+    }
         /* ФОН СТРАНИЦЫ */
-        body {
+     body {
             background-image: url('images/Без\ имени.jpg');
             background-size: cover;
             background-position: center;
@@ -172,6 +223,19 @@
             </div>
         </div>
     </div>
+    <script>
+// На странице статьи - запускаем анимации
+document.addEventListener('DOMContentLoaded', function() {
+    const articleContainer = document.querySelector('.article-container');
+    
+    if (articleContainer) {
+        // Сначала показываем пустой контейнер
+        setTimeout(() => {
+            articleContainer.classList.add('visible');
+        }, 200);
+    }
+});
+</script>
 </body>
 <style>
 .fade-in {
@@ -186,4 +250,5 @@
 }
 </style>
 </html>
+
 
