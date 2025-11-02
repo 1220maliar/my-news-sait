@@ -8,6 +8,68 @@
         opacity: 1;
         transition: opacity 0.5s ease-in-out;
     }
+    
+    /* Анимация появления карточек */
+    .news-card {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s ease-out;
+    }
+    
+    .news-card:nth-child(1) { transition-delay: 0.3s; }
+    .news-card:nth-child(2) { transition-delay: 0.5s; }
+    .news-card:nth-child(3) { transition-delay: 0.7s; }
+    .news-card:nth-child(4) { transition-delay: 0.9s; }
+    
+    .page-loaded .news-card {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Анимация заголовка */
+    .page-header {
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: all 0.8s ease-out 0.2s;
+    }
+    
+    .page-loaded .page-header {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+<script>
+// Постепенное появление всего контента
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        document.body.classList.add('page-loaded');
+    }, 300);
+});
+
+// Плавный переход на статью
+function openArticleWithAnimation(articleUrl) {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.4s ease';
+    
+    setTimeout(() => {
+        window.location.href = articleUrl;
+    }, 400);
+}
+
+// Обработчики кнопок
+document.querySelectorAll('.read-more').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        openArticleWithAnimation(this.href);
+    });
+});
+</script>
+    /* Плавный переход между страницами */
+    .page-transition {
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+    }
 </style>
 
 
@@ -122,6 +184,7 @@ document.querySelectorAll('.read-more').forEach(button => {
 <div class="page-turn" id="pageTurn"></div>
 
 </html>
+
 
 
 
