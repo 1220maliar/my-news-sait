@@ -11,7 +11,8 @@
     height: auto;            /* Высота сама подстроится */
     border-radius: 15px;     /* Закругленные углы */
 } 
-/* Стиль для пустой статьи при загрузке */
+<style>
+    /* Стиль для пустой статьи при загрузке */
     .article-container {
         opacity: 0;
         transform: translateY(50px);
@@ -32,35 +33,86 @@
     
     /* Анимации для разных элементов */
     .article-header {
-        transition: all 0.9s ease-out 0.4s;
+        transition: all 0.8s ease-out 0.3s;
     }
     
     .article-image,
     .article-image-side {
-        transition: all 0.9s ease-out 0.7s;
+        transition: all 0.8s ease-out 0.6s;
     }
     
     .article-content p {
-        transition: all 0.8s ease-out;
+        transition: all 0.7s ease-out;
     }
     
     .article-content ul {
-        transition: all 0.8s ease-out;
+        transition: all 0.7s ease-out;
     }
     
     /* Задержки для параграфов */
-    .article-content p:nth-child(1) { transition-delay: 1s; }
-    .article-content p:nth-child(2) { transition-delay: 1.3s; }
-    .article-content p:nth-child(3) { transition-delay: 1.6s; }
-    .article-content p:nth-child(4) { transition-delay: 1.9s; }
+    .article-content p:nth-child(1) { transition-delay: 0.9s; }
+    .article-content p:nth-child(2) { transition-delay: 1.2s; }
+    .article-content p:nth-child(3) { transition-delay: 1.5s; }
+    .article-content p:nth-child(4) { transition-delay: 1.8s; }
     
     /* Задержка для списка */
-    .article-content ul { transition-delay: 2.2s; }
+    .article-content ul { transition-delay: 2.1s; }
+    
+    /* Задержка для элементов списка */
+    .article-content li {
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.5s ease-out;
+    }
+    
+    .article-content li:nth-child(1) { transition-delay: 2.4s; }
+    .article-content li:nth-child(2) { transition-delay: 2.6s; }
+    .article-content li:nth-child(3) { transition-delay: 2.8s; }
+    .article-content li:nth-child(4) { transition-delay: 3.0s; }
     
     /* Когда контейнер видим - показываем элементы */
     .article-container.visible > * {
         opacity: 1;
         transform: translateY(0);
+    }
+    
+    .article-container.visible .article-content li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+</style>
+
+<script>
+// На странице статьи - запускаем анимации
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('anfisa.html загружена'); // Для отладки
+    
+    const articleContainer = document.querySelector('.article-container');
+    
+    if (articleContainer) {
+        console.log('Контейнер статьи найден'); // Для отладки
+        
+        // Сначала показываем пустой контейнер
+        setTimeout(() => {
+            articleContainer.classList.add('visible');
+            console.log('Класс visible добавлен'); // Для отладки
+        }, 200);
+    } else {
+        console.log('Контейнер статьи НЕ найден!'); // Для отладки
+    }
+});
+
+// Плавный переход назад
+document.querySelector('.back-button').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.4s ease';
+    
+    setTimeout(() => {
+        window.location.href = this.href;
+    }, 400);
+});
+</script>
     }
         /* ФОН СТРАНИЦЫ */
         body {
@@ -281,6 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 </html>
+
 
 
 
