@@ -80,28 +80,6 @@
         opacity: 1;
         transform: translateX(0);
     }
-</style>
-
-<script>
-// На странице статьи - запускаем анимации
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('anfisa.html загружена'); // Для отладки
-    
-    const articleContainer = document.querySelector('.article-container');
-    
-    if (articleContainer) {
-        console.log('Контейнер статьи найден'); // Для отладки
-        
-        // Сначала показываем пустой контейнер
-        setTimeout(() => {
-            articleContainer.classList.add('visible');
-            console.log('Класс visible добавлен'); // Для отладки
-        }, 200);
-    } else {
-        console.log('Контейнер статьи НЕ найден!'); // Для отладки
-    }
-});
-
 // Плавный переход назад
 document.querySelector('.back-button').addEventListener('click', function(e) {
     e.preventDefault();
@@ -332,6 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 </html>
+
 
 
 
