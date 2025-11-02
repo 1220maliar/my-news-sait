@@ -185,43 +185,5 @@
     transform: translateY(0);
 }
 </style>
-<script>
-// Упрощенная версия с проверкой загрузки
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        animateArticle();
-    }, 100);
-});
-
-function animateArticle() {
-    const article = document.querySelector('.article-container');
-    if (!article) return;
-    
-    // Показываем контейнер
-    article.style.opacity = '1';
-    article.style.transition = 'opacity 0.5s ease';
-    
-    // Анимируем элементы по очереди
-    const elements = [
-        '.article-header',
-        '.article-image', 
-        '.article-content p',
-        '.article-content ul'
-    ];
-    
-    elements.forEach((selector, index) => {
-        const element = document.querySelector(selector);
-        if (element) {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                element.style.transition = 'all 0.6s ease';
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
-            }, 300 + (index * 300));
-        }
-    });
-}
-</script>
 </html>
+
